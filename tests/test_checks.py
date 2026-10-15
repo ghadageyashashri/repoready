@@ -1,5 +1,12 @@
 from repoready.checks import check_dependency_file, check_readme
-from repoready.models import Status
+from repoready.models import Status 
+from repoready.checks import (
+    check_dependency_file,
+    check_env_example,
+    check_gitignore,
+    check_readme,
+    run_all_checks,
+)
 
 
 def test_readme_found(tmp_path):
@@ -16,8 +23,13 @@ def test_dependency_file_found(tmp_path):
     assert check_dependency_file(tmp_path).status == Status.PASS
 
 
-def test_dependency_file_missing(tmp_path):
+def test_dependency_file_missing_with_code_fails(tmp_path):
+    (tmp_path / "main.py").write_text("print('hi')")
     assert check_dependency_file(tmp_path).status == Status.FAIL
+
+
+def test_dependency_file_missing_without_code_is_unknown(tmp_path):
+    assert check_dependency_file(tmp_path).status == Status.UNKNOWN
 
 from repoready.checks import (
     check_dependency_file,

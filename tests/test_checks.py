@@ -48,3 +48,7 @@ def test_env_without_example_warns(tmp_path):
 
 def test_no_env_files_is_fine(tmp_path):
     assert check_env_example(tmp_path).status == Status.PASS
+
+def test_run_all_checks_returns_every_result(tmp_path):
+    results = run_all_checks(tmp_path)
+    assert len(results) == 4

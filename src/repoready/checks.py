@@ -40,3 +40,12 @@ def check_env_example(folder: Path) -> CheckResult:
             ".env exists but .env.example is missing; new developers won't know which settings to create",
         )
     return CheckResult(".env.example", Status.PASS, "No .env file in use, nothing to document")
+
+def run_all_checks(folder: Path) -> list[CheckResult]:
+    checks = [
+        check_readme,
+        check_dependency_file,
+        check_gitignore,
+        check_env_example,
+    ]
+    return [check(folder) for check in checks]

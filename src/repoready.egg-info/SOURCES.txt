@@ -1,0 +1,8 @@
+README.md
+pyproject.toml
+src/repoready/__init__.py
+src/repoready/list_files.py
+src/repoready.egg-info/PKG-INFO
+src/repoready.egg-info/SOURCES.txt
+src/repoready.egg-info/dependency_links.txt
+src/repoready.egg-info/top_level.txt
